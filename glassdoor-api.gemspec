@@ -5,7 +5,7 @@ require 'glassdoor/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "glassdoor-api"
-  spec.version       = Glassdoor::Api::VERSION
+  spec.version       = Glassdoor::VERSION
   spec.authors       = ["Ilya Bazylchuk"]
   spec.email         = ["ilya.bazylchuk@gmail.com"]
 
