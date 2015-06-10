@@ -1,5 +1,3 @@
 module Glassdoor
-  module Api
-    VERSION = "0.1.1"
-  end
+  VERSION = "0.1.1"
 end
