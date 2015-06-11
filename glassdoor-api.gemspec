@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'httparty', '~> 0.11'
   spec.add_dependency 'json', '~> 1.7', '>= 1.7.7'
+  spec.add_dependency 'rspec-rails', '~> 3.0'
 end
