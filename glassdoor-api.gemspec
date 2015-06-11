@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/IBazylchuk/ruby-glassdoor-api"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|lib)/}) }
+  spec.files         = Dir['{lib}/**/*.rb', 'LICENSE', '*.md']
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.9"
