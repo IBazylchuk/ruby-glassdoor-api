@@ -21,7 +21,9 @@ Or install it yourself as:
 ## Setup
 
 1. Require the gem with 
-    require 'glassdoor'
+```ruby
+require 'glassdoor'
+```
 2. Visit the [Glassdoor API page](https://www.glassdoor.com/developer/register_input.htm) and register for an API key.
 3. You will receive an email with your partner id and partner key
 4. Setup configuration with:
