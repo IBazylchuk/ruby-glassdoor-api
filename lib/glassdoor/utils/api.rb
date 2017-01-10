@@ -2,8 +2,8 @@ require 'httparty'
 
 module Glassdoor
   module Utils
-    class RequestError < Exception; end
-    class ResponseUnsuccessError < Exception; end
+    class RequestError < StandardError; end
+    class ResponseUnsuccessError < StandardError; end
 
     class Api
       include HTTParty
