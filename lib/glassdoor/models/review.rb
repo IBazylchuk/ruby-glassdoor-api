@@ -1,7 +1,7 @@
 module Glassdoor
   module Models
     class Review
-      attr_accessor :id, :date, :job_title,  :location, :logo,
+      attr_reader :id, :date, :job_title,  :location, :logo,
 
                     :headline, :pros, :cons, :overall
 

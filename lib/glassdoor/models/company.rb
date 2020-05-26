@@ -1,7 +1,7 @@
 module Glassdoor
   module Models
     class Company
-      attr_accessor :id, :name, :url,  :industry, :logo,
+      attr_reader :id, :name, :url, :industry, :sector_name, :logo,
                     :overall_rating, :culture_and_values_rating, :senior_leadership_rating,
                     :compensation_and_benefits_rating, :career_opportunities_rating,
                     :work_life_balance_rating, :recommend_to_friend_rating, :review
@@ -12,6 +12,7 @@ module Glassdoor
         @name                             = args['name'] || ''
         @url                              = args['website'] || ''
         @industry                         = args['industry'] || ''
+        @sector_name                      = args['sectorName'] || ''
         @overall_rating                   = args['overallRating'].to_f
         @culture_and_values_rating        = args['cultureAndValuesRating'].to_f
         @senior_leadership_rating         = args['seniorLeadershipRating'].to_f

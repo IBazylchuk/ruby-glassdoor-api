@@ -1,9 +1,9 @@
 module Glassdoor
   module Clients
     module Company
-      def self.search_by_title(title)
+      def self.search_by_title(title, page = 1, per_page = 20)
         api = Glassdoor::Utils::Api.instance
-        hash  = api.gd_get(action: 'employers', q: title)
+        hash  = api.gd_get(action: 'employers', q: title, pn: page, ps: per_page)
 
         hash['employers'].map do |company|
           Models::Company.new(company)

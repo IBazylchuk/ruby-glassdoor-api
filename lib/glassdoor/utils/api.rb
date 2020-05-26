@@ -1,4 +1,5 @@
-require 'httparty'
+require 'rest-client'
+require 'addressable'
 
 module Glassdoor
   module Utils
@@ -6,45 +7,37 @@ module Glassdoor
     class ResponseUnsuccessError < StandardError; end
 
     class Api
-      include HTTParty
-
-      base_uri 'http://api.glassdoor.com/api/api.htm'
-
       def self.instance
-        api = Glassdoor::Utils::Api.new
-        api
+        Glassdoor::Utils::Api.new
       end
 
       def initialize
-        self.class.default_params 't.p' => Glassdoor.configuration.partner_id,
-                                  't.k' => Glassdoor.configuration.partner_key,
-                                  userip: '0.0.0.0',
-                                  useragent: '',
-                                  v: Glassdoor.configuration.version_api,
-                                  format: 'json',
-                                  page: ''
-
-
-        self.class.default_timeout Glassdoor.configuration.time_out
+        @default_params  =  {
+          't.p' => Glassdoor.configuration.partner_id,
+          't.k' => Glassdoor.configuration.partner_key,
+          userip: '0.0.0.0',
+          useragent: '',
+          v: Glassdoor.configuration.version_api,
+          format: 'json',
+          page: ''
+        }
       end
 
       def gd_get(options={})
-        self.class.base_uri Glassdoor.configuration.base_uri
-        options = options.merge(self.class.default_params)
-        response = self.class.get('', query: options)
-        validate_response(response)
+        uri = Addressable::URI.parse(Glassdoor.configuration.base_url)
+        uri.query_values = options.merge(@default_params)
+
+        response = RestClient::Request.execute(method: :get, url: uri.to_s, timeout: Glassdoor.configuration.time_out)
+        response_hash = MultiJson.load(response)
+        validate_response(response_hash)
       end
 
-      def validate_response(response)
-        if response.code == 200
-          hash = JSON.parse(response.body)
-          unless hash['success']
-            raise ResponseUnsuccessError.new hash['status']
-          end
-          hash['response']
-        else
-          raise RequestError.new response.message
+      def validate_response(response_hash)
+        unless response_hash['success']
+          raise ResponseUnsuccessError.new response_hash['status']
         end
+
+        response_hash['response']
       end
     end
   end
