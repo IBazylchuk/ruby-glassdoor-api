@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'awesome_print'
 
 
-  spec.add_dependency 'httparty'
-  spec.add_dependency 'json'
+  spec.add_dependency 'rest-client'
+  spec.add_dependency 'addressable'
+  spec.add_dependency 'multi_json'
 end
