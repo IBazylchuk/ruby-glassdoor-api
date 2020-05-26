@@ -1,8 +1,6 @@
 # Glassdoor::Api
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/glassdoor/api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is an unofficial gem to utilize Glassdoor's API.
 
 ## Installation
 
@@ -20,9 +18,27 @@ Or install it yourself as:
 
     $ gem install glassdoor-api
 
-## Usage
+## Setup
 
-TODO: Write usage instructions here
+1. Require the gem with
+```ruby
+require 'glassdoor'
+```
+2. Visit the [Glassdoor API page](https://www.glassdoor.com/developer/register_input.htm) and register for an API key.
+3. You will receive an email with your partner id and partner key
+4. Setup configuration with:
+```ruby
+config = Glassdoor.configuration
+config.partner_id = "your-partner-id"
+config.partner_key = "your-partner-key"
+```
+
+## Searching for a Company
+
+1. Search using title
+```ruby
+Glassdoor::Clients::Company.find_by_title("apple")
+```
 
 ## Development
 
